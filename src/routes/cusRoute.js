@@ -6,6 +6,9 @@ const cusController = require("../controllers/cusController");
 // get all customers
 router.get("/", cusController.getCustomersList);
 
+// get by limit customers
+router.get("/bylimit/:numl", cusController.getCustomerBylimit);
+
 // create new customer
 router.post("/", cusController.createNewCustomer);
 

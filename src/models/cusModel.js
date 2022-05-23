@@ -22,6 +22,19 @@ Cus.getAllCustomers = (result) => {
   });
 };
 
+// get all customers by limit
+Cus.getByLimitCustomers = (numl, result) => {
+  dbconn.query("select *from cus_data limit " + numl, (err, res) => {
+    if (err) {
+      console.log("Error while fetching customers by limit", err);
+      result(null, err);
+    } else {
+      console.log("Customers fetched by limit successfully!");
+      result(null, res);
+    }
+  });
+};
+
 // create new customer
 Cus.createCustomer = (cusReqData, result) => {
   dbconn.query("insert into cus_data set ?", cusReqData, (err, res) => {

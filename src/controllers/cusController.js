@@ -9,6 +9,15 @@ exports.getCustomersList = (req, res) => {
   });
 };
 
+// get customer by limit
+exports.getCustomerBylimit = (req, res) => {
+  cusModel.getByLimitCustomers(req.params.numl, (err, customers) => {
+    if (err) res.send(err);
+    console.log("Customers", customers);
+    res.send(customers);
+  });
+};
+
 // create new customer
 exports.createNewCustomer = (req, res) => {
   const customerReqData = new cusModel(req.body);
