@@ -40,6 +40,32 @@ exports.createNewCustomer = (req, res) => {
   }
 };
 
+// create new multiple customer
+exports.createNewMultiCustomer = (req, res) => {
+  const customerMultiReqData = new cusModel(req.body);
+  console.log("customerMultiReqData", customerMultiReqData);
+  // check null
+  if (req.body.contructor === Object && Object.keys(req.body).length === 0) {
+    res.send(400).send({
+      success: false,
+      message: "Please fill fields",
+    });
+  } else {
+    cusModel.createMultiCustomer(
+      req.params.record,
+      customerMultiReqData,
+      (err, customer) => {
+        if (err) res.send(err);
+        res.json({
+          status: true,
+          message: "Customer Create Mutiple Successfully!",
+          // data: customer,
+        });
+      }
+    );
+  }
+};
+
 // update customer
 exports.updateCustomer = (req, res) => {
   // console.log(req.params.id);

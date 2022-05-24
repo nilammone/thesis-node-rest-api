@@ -48,6 +48,18 @@ Cus.createCustomer = (cusReqData, result) => {
   });
 };
 
+// create new multiple customer
+Cus.createMultiCustomer = (record, cusReqData, result) => {
+  const amt = record;
+  for (let i = 0; i < amt; i++) {
+    dbconn.query("insert into cus_data set ?", cusReqData, (err, res) => {
+      if (err) result(null, err);
+    });
+  }
+  console.log("Customer Create multiple Successfully: " + amt + " records");
+  result(null, "completed!");
+};
+
 // update customer
 Cus.updateCustomer = (id, customerReqData, result) => {
   dbconn.query(
