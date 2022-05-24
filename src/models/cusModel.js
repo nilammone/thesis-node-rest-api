@@ -51,7 +51,7 @@ Cus.createCustomer = (cusReqData, result) => {
 // update customer
 Cus.updateCustomer = (id, customerReqData, result) => {
   dbconn.query(
-    "UPDATE cus_data set first_name = ?, last_name = ?, birth_date = ?, e_mail = ?, phone = ?, address = ? WHERE id = ?",
+    "UPDATE cus_data set first_name = ?, last_name = ?, birth_date = ?, e_mail = ?, phone = ?, address = ? WHERE id <= ?",
     [
       customerReqData.first_name,
       customerReqData.last_name,
@@ -75,7 +75,7 @@ Cus.updateCustomer = (id, customerReqData, result) => {
 
 // delete customer
 Cus.deleteCustomer = (id, result) => {
-  dbconn.query("DELETE FROM cus_data WHERE id = ?", [id], (err, res) => {
+  dbconn.query("DELETE FROM cus_data WHERE id <= ?", [id], (err, res) => {
     if (err) {
       console.log("Error while deleting the customer");
       result(null, err);
