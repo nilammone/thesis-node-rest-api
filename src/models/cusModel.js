@@ -63,16 +63,8 @@ Cus.createMultiCustomer = (record, cusReqData, result) => {
 // update customer
 Cus.updateCustomer = (id, customerReqData, result) => {
   dbconn.query(
-    "UPDATE cus_data set first_name = ?, last_name = ?, birth_date = ?, e_mail = ?, phone = ?, address = ? WHERE id <= ?",
-    [
-      customerReqData.first_name,
-      customerReqData.last_name,
-      customerReqData.birth_date,
-      customerReqData.e_mail,
-      customerReqData.phone,
-      customerReqData.address,
-      id,
-    ],
+    "UPDATE cus_data set first_name = ? WHERE id <= ?",
+    [customerReqData.first_name, id],
     (err, res) => {
       if (err) {
         console.log("Error while updating the customer");
